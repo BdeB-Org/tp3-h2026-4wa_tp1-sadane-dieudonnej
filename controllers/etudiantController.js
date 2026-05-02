@@ -2,21 +2,21 @@ const db = require('../config/database');
 
 //-------Jorenso---------
 
-//Get tous les étudiants
-exports.getEtudiant = (req, res)=> {
-    db.all('SELECT * FROM etudiant', (err,rows) => {
-        res.json(rows);
+//Get permet de lire les informations dans le tableau.
+exports.getEtudiant = (req, res) => {
+    db.all('SELECT * FROM etudiant', (err,rows) => { //db.all permet d'exécuter la requête. Rows contient les résulats
+        res.json(rows); // renvoie les données au client.
         if (err) {
             return res.status(500).json({ erreur: err.message });
         }
     });
 };
-//Par Jorenso
-// Post ajoute un étudiant
 
+//Par Jorenso
+// Post permet de créer une nouvelle rangée d'étudiant.
 exports.addEtudiant = (req, res) => {
     const { id_etudiant, nom, prenom, email, programme} = req.body;
-    db.run(
+    db.run( //exécute insert
         "INSERT INTO etudiant (id_etudiant, nom, prenom, email, programme) VALUES (?,?,?,?,?)",
         [ id_etudiant, nom, prenom, email, programme],
         function(err){
@@ -25,16 +25,16 @@ exports.addEtudiant = (req, res) => {
                 return res.status(500).json({erreur:err.message});
             }
 
-            res.json({
+            res.status(201).json({
                 message:"Étudiant ajouté",
-                id:this.lastID
+                id:this.lastID //retourne l'id généré.
             });
         }
     );
 };
 
 // ---------------Jorenso-------------------
-// UPDATE projet
+// UPDATE permet de mettre à jour une information d'un étudiant.
 
 exports.updateEtudiant = (req, res) => {
     const id = req.params.id;
@@ -57,6 +57,7 @@ exports.updateEtudiant = (req, res) => {
     );
 };
 
+//Permet de supprimer un étudiant dans la base de donné
 exports.deleteEtudiant = (req, res)=> {
     const id = req.params.id;
 
