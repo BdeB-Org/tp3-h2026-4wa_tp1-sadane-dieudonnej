@@ -2,27 +2,22 @@ const db = require('../config/database');
 
 //-------Jorenso---------
 
-//Get permet de lire les informations dans le tableau.
-exports.getEtudiant = (req, res) => {
-    db.all('SELECT * FROM etudiant', (err,rows) => { //db.all permet d'exécuter la requête. Rows contient les résulats
-        res.json(rows); // renvoie les données au client.
-        if (err) {
-            return res.status(500).json({ erreur: err.message });
-        }
-    });
-};
-
 //Par Jorenso
 // Post permet de créer une nouvelle rangée d'étudiant.
 exports.addEtudiant = (req, res) => {
-    const { id_etudiant, nom, prenom, email, programme} = req.body;
+    const { id_etudiant, nom, prenom, email, programme, password} = req.body;
+    //Permet de rentrer des informations obligatoires.
+    if(!nom || !programme || !password) {
+        return res.status(400).json({
+            message: " Tous les champs sont requis"
+        });
+    }
+
     db.run( //exécute insert
-        "INSERT INTO etudiant (id_etudiant, nom, prenom, email, programme) VALUES (?,?,?,?,?)",
-        [ id_etudiant, nom, prenom, email, programme],
+        "INSERT INTO etudiant (id_etudiant, nom, prenom, email, programme, password) VALUES (?,?,?,?,?,?)",
+        [ id_etudiant, nom, prenom, email, programme, password],
         function(err){
-            if (err){
-                console.log(err);
-                return res.status(500).json({erreur:err.message});
+            if (err){console.log(err);return res.status(500).json({message: "erreur insertion" });
             }
 
             res.status(201).json({
@@ -33,24 +28,52 @@ exports.addEtudiant = (req, res) => {
     );
 };
 
+//Get permet de lire les informations dans les tableaux.
+exports.getEtudiant = (req, res) => {
+    db.all('SELECT * FROM etudiant', (err,rows) => { // db.all permet d'exécuter la requête. Rows contient les résulats
+
+        if (err) {return res.status(500).json({ erreur: err.message });}
+
+        res.json(rows); // renvoie les données au client.
+    });
+};
+
+
+
+
+//Permet de lire une table
+exports.getEtudiantById = (req, res) => {
+    db.get(
+        "SELECT * FROM etudiant WHERE id = ?",
+        [req.params.id],
+        (err, row) => {
+            if (err) return res.status(500).json({message: err.message});
+            if(!row) return res.status(404).json({message: 'Étudiant non trouvé'});
+        }
+    );
+};
+
 // ---------------Jorenso-------------------
 // UPDATE permet de mettre à jour une information d'un étudiant.
 
 exports.updateEtudiant = (req, res) => {
     const id = req.params.id;
-    const { id_etudiant, nom, prenom, email, programme} = req.body;
+    const { id_etudiant, nom, prenom, email, programme, password} = req.body;
+
+    if (!nom || !programme) {
+        return res.status(400).json({ message: 'nom et programme sont obligatoires'});
+    }
 
     db.run(
         'UPDATE etudiant SET id_etudiant=?, nom=?, prenom=?, email=?, programme=? WHERE id_etudiant=?',
         [id_etudiant, nom, prenom, email, programme, id],
         function(err){
-            
-            if(err){
-                return res.status(500).json({ erreur:err.message});
-            }
+            if (err) return res.status(500).json({ erreur:err.message});
+            if (this.changes === 0) return res.status(404).json({ message: 'Étudiant non trouvé'});
+
 
             res.json({
-                message: "Étudiant modifié",
+                message: "L'étudiant a été modifié",
                 id: id
             });
         }
@@ -71,15 +94,13 @@ exports.deleteEtudiant = (req, res)=> {
         'DELETE FROM etudiant WHERE id_etudiant = ?',
         [id],
         function(err){
-            if (err) {
-                console.error(err);
-                return res.status(500).json({erreur: err.message});
-            }
+            if (err) {console.error(err); return res.status(500).json({ erreur: err.message});
+        }
             
             //Vérifie si une ligne a été supprimé
-            if (this.changes ===0) {
-                return res.status(404).json({message: "Aucun étudiant trouvé avec cet ID"});
-            }
+            if (this.changes ===0) 
+                
+                { return res.status(404).json({ message: "Aucun étudiant trouvé avec cet ID"}); }
 
             res.json({message: "Étudiant supprimé", id: id});
         }

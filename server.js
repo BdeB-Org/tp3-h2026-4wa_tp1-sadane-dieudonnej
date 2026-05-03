@@ -1,15 +1,19 @@
 const express = require("express");
-const app = express();
+//Ajout de cors
+const cors = require('cors');
+const authRoutes = require('./routes/authRoutes')
 const projetRoutes = require("./routes/projetRoutes");
 const etudiantRoutes = require("./routes/etudiantRoutes");
-//Ajout de cors
-const cors = require("cors");
-//Ligne de codes app
-app.use(express.json());
-app.use("/", projetRoutes);
-app.use ("/", etudiantRoutes);
+
+const app = express();
+
 //app cors
 app.use(cors());
+app.use(express.json());
+
+app.use('/auth', authRoutes);
+app.use("/", projetRoutes);
+app.use ("/", etudiantRoutes);
 
 //Ligne de code serveur
 app.listen(3000, () => {
