@@ -16,10 +16,10 @@ router.post('/etudiant', verifyToken, etudiantController.addEtudiant);
 // ---------------Jorenso-------------------
 
 // UPDATE mise à jour d'un étudiant
-router.put("/etudiant/:id", etudiantController.updateEtudiant);
+router.put("/etudiant/:id", verifyToken, etudiantController.updateEtudiant);
 // ---------------Jorenso-------------------
 
 // DELETE supprime un étudiant
-router.delete('/etudiant:id', verifyToken, etudiantController.deleteEtudiant);
+router.delete('/etudiant/:id', verifyToken, etudiantController.deleteEtudiant);
 
 module.exports = router;

@@ -1,21 +1,22 @@
 const express = require("express");
 const router = express.Router();
 const projetController = require("../controllers/projetController");
+const verifyToken = require("../middleware/authMiddleWare");
 // ---------------Edgar-------------------
 
-// GET
-router.get("/projets", projetController.getProjets);
+// GET - récupère tous les projets (protégé par token)
+router.get("/projets", verifyToken, projetController.getProjets);
 // ---------------Edgar-------------------
 
-// POST
-router.post("/projets", projetController.addProjet);
+// POST - ajoute un nouveau projet (protégé par token)
+router.post("/projets", verifyToken, projetController.addProjet);
 // ---------------Edgar-------------------
 
-// UPDATE
-router.put("/projets/:id", projetController.updateProjet);
+// UPDATE - modifie un projet (protégé par token)
+router.put("/projets/:id", verifyToken, projetController.updateProjet);
 // ---------------Edgar-------------------
 
-// DELETE
-router.delete("/projets/:id", projetController.deleteProjet);
+// DELETE - supprime un projet (protégé par token)
+router.delete("/projets/:id", verifyToken, projetController.deleteProjet);
 
 module.exports = router;

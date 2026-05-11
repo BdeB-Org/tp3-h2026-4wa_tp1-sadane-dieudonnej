@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestion des étudiants</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+
+        <!-- ---------------Jorenso------------------- -->
+        <!-- Barre du haut avec titre et navigation -->
+        <div class="topbar">
+            <div>
+                <h1>Gestion des étudiants</h1>
+                <p class="small">Ajout, recherche et affichage des étudiants</p>
+            </div>
+            <div class="actions">
+                <a class="btn-link" href="/index.html">Voir les projets</a>
+                <button class="secondary" onclick="logout()">Déconnexion</button>
+            </div>
+        </div>
+
+        <!-- Zone pour afficher les messages (succès ou erreur) -->
+        <div id="message"></div>
+
+        <!-- ---------------Jorenso------------------- -->
+        <!-- Formulaire pour ajouter un nouvel étudiant -->
+        <h2>Ajouter un étudiant</h2>
+        <form id="formAjout">
+            <input type="number" id="id_etudiant" placeholder="ID Étudiant">
+            <input type="text" id="nom" placeholder="Nom" required>
+            <input type="text" id="prenom" placeholder="Prénom">
+            <input type="email" id="email" placeholder="Email">
+            <input type="text" id="programme" placeholder="Programme" required>
+            <input type="password" id="password" placeholder="Mot de passe" required>
+            <button type="submit">Ajouter</button>
+        </form>
+
+        <!-- ---------------Jorenso------------------- -->
+        <!-- Barre de recherche par nom -->
+        <h2>Tous les étudiants</h2>
+        <div id="section-recherche">
+            <input type="text" id="champRecherche" placeholder="Rechercher par nom...">
+            <button onclick="rechercherDonnees()">Rechercher</button>
+            <button class="secondary" onclick="chargerDonnees()">Réinitialiser</button>
+        </div>
+
+        <!-- Tableau des étudiants — rempli dynamiquement par JavaScript -->
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Email</th>
+                    <th>Programme</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="tbodyEtudiants"></tbody>
+        </table>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/etudiants.js"></script>
+</body>
+</html>

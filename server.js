@@ -11,6 +11,9 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// Sert les fichiers HTML/CSS/JS du dossier public/
+app.use(express.static('public'));
+
 app.use('/auth', authRoutes);
 app.use("/", projetRoutes);
 app.use ("/", etudiantRoutes);

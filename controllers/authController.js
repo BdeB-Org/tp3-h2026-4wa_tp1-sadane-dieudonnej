@@ -1,4 +1,4 @@
-const db = require('../database');
+const db = require('../config/database');
 const jwt = require('jsonwebtoken');
 
 exports.login = (req, res) => {
@@ -31,7 +31,7 @@ exports.login = (req, res) => {
                 {expiresIn: "3h"}
             );
 
-            res,json({
+            res.json({
                 message: "Authentification réussi",
                 token: token
             });

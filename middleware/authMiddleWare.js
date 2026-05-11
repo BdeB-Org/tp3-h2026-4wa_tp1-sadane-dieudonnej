@@ -9,7 +9,7 @@ function verifyToken(req, res ,next) {
         });
     }
     
-    const token = header.split("")[1];
+    const token = header.split(" ")[1];
 
     try {
 

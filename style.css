@@ -1,0 +1,104 @@
+/* ---------------Edgar/Jorenso------------------- */
+/* Style simple mais structuré et visuellement clair */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 30px;
+    background-color: #f5f5f5;
+    color: #222;
+}
+
+h1 {
+    background-color: #2c3e50;
+    color: white;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+h2 {
+    color: #2c3e50;
+    border-bottom: 1px solid #2c3e50;
+    padding-bottom: 5px;
+}
+
+/* Sections séparées visuellement */
+#section-recherche,
+#section-formulaire,
+#section-tableau {
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+/* Alignement des labels et des champs */
+.champ-groupe {
+    margin-bottom: 8px;
+}
+
+label {
+    display: inline-block;
+    width: 130px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="date"] {
+    width: 260px;
+    padding: 4px;
+    border: 1px solid #aaa;
+}
+
+/* Style des boutons */
+button {
+    padding: 5px 12px;
+    margin: 4px 2px;
+    cursor: pointer;
+    background-color: #2c3e50;
+    color: white;
+    border: none;
+}
+
+button:hover {
+    background-color: #1a252f;
+}
+
+/* Le tableau prend toute la largeur */
+#tableau-projets {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#tableau-projets th,
+#tableau-projets td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+}
+
+#tableau-projets th {
+    background-color: #2c3e50;
+    color: white;
+}
+
+/* Alternance de couleurs dans le tableau pour la lisibilité */
+#tableau-projets tbody tr:nth-child(even) {
+    background-color: #f0f0f0;
+}
+
+/* Messages de retour */
+.message-erreur {
+    color: red;
+    font-weight: bold;
+}
+
+.message-succes {
+    color: green;
+    font-weight: bold;
+}
+
+#message-formulaire {
+    margin-top: 8px;
+    display: block;
+}

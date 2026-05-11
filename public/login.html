@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Connexion</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container" style="max-width: 500px;">
+        <h1>Connexion</h1>
+        <!-- ---------------Edgar------------------- -->
+        <!-- Compte de démonstration -->
+        <p class="small">Compte de démonstration : <strong>Sadan</strong> / <strong>admin123</strong></p>
+
+        <!-- Zone pour afficher les messages d'erreur -->
+        <div id="message"></div>
+
+        <form id="loginForm">
+            <input type="text" id="nom" placeholder="Nom d'utilisateur" required>
+            <input type="password" id="password" placeholder="Mot de passe" required>
+            <button type="submit">Se connecter</button>
+        </form>
+    </div>
+
+    <!-- auth.js contient saveToken() et les fonctions d'auth -->
+    <script src="js/auth.js"></script>
+    <script>
+        const form = document.getElementById('loginForm');
+        const message = document.getElementById('message');
+
+        // ---------------Edgar-------------------
+        // Soumission du formulaire de connexion
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            message.innerHTML = '';
+
+            const nom = document.getElementById('nom').value.trim();
+            const password = document.getElementById('password').value.trim();
+
+            try {
+                // On envoie les identifiants à l'API de login
+                const res = await fetch('/auth/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ nom, password })
+                });
+
+                const data = await res.json();
+
+                if (!res.ok) {
+                    throw new Error(data.message || 'Erreur de connexion');
+                }
+
+                // On sauvegarde le token et on redirige vers la page principale
+                saveToken(data.token);
+                window.location.href = '/index.html';
+
+            } catch (err) {
+                message.innerHTML = `<div class="message error">${err.message}</div>`;
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,142 @@
+/* ---------------Edgar------------------- */
+/* Style général inspiré de l'exemple de la prof */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #f4f6f8;
+    color: #222;
+}
+
+/* Conteneur central avec ombre */
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 30px auto;
+    background: white;
+    padding: 24px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
+h1, h2 {
+    margin-top: 0;
+}
+
+/* Barre du haut avec titre et boutons */
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.small {
+    color: #555;
+    font-size: 14px;
+}
+
+/* Formulaire en grille */
+form {
+    display: grid;
+    gap: 12px;
+    margin-bottom: 20px;
+    max-width: 500px;
+}
+
+input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+/* Boutons normaux (bleu) */
+button, .btn-link {
+    padding: 10px 14px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    background: #2563eb;
+    color: white;
+    text-decoration: none;
+    display: inline-block;
+    margin-right: 6px;
+    font-size: 14px;
+}
+
+button:hover, .btn-link:hover {
+    background: #1d4ed8;
+}
+
+/* Bouton rouge pour supprimer */
+button.danger {
+    background: #dc2626;
+}
+
+button.danger:hover {
+    background: #b91c1c;
+}
+
+/* Bouton gris pour secondaire (déconnexion, annuler) */
+button.secondary {
+    background: #6b7280;
+}
+
+button.secondary:hover {
+    background: #4b5563;
+}
+
+.actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+/* Section de recherche */
+#section-recherche {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#section-recherche input {
+    width: 250px;
+}
+
+/* Tableau */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background: #f0f2f5;
+}
+
+/* Alternance de couleurs dans le tableau */
+tbody tr:nth-child(even) {
+    background: #fafafa;
+}
+
+/* Messages de succès et d'erreur */
+.message {
+    padding: 10px;
+    margin: 12px 0;
+    border-radius: 6px;
+    background: #e0f2fe;
+    color: #0369a1;
+}
+
+.message.error {
+    background: #fee2e2;
+    color: #991b1b;
+}

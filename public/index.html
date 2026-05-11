@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestion des projets</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+
+        <!-- ---------------Edgar------------------- -->
+        <!-- Barre du haut avec titre et bouton déconnexion -->
+        <div class="topbar">
+            <div>
+                <h1>Gestion des projets</h1>
+                <p class="small">Ajout, recherche et affichage des projets</p>
+            </div>
+            <div class="actions">
+                <a class="btn-link" href="/etudiants.html">Voir les étudiants</a>
+                <button class="secondary" onclick="logout()">Déconnexion</button>
+            </div>
+        </div>
+
+        <!-- Zone pour afficher les messages (succès ou erreur) -->
+        <div id="message"></div>
+
+        <!-- ---------------Edgar------------------- -->
+        <!-- Formulaire pour ajouter un nouveau projet -->
+        <h2>Ajouter un projet</h2>
+        <form id="formAjout">
+            <input type="text" id="titre" placeholder="Titre du projet" required>
+            <input type="text" id="description" placeholder="Description du projet" required>
+            <input type="date" id="date_projet" required>
+            <input type="number" id="id_etudiant" placeholder="ID Étudiant" required>
+            <input type="number" id="id_cours" placeholder="ID Cours" required>
+            <button type="submit">Ajouter</button>
+        </form>
+
+        <!-- ---------------Edgar------------------- -->
+        <!-- Barre de recherche par titre -->
+        <h2>Tous les projets</h2>
+        <div id="section-recherche">
+            <input type="text" id="champRecherche" placeholder="Rechercher par titre...">
+            <button onclick="rechercherDonnees()">Rechercher</button>
+            <button class="secondary" onclick="chargerDonnees()">Réinitialiser</button>
+        </div>
+
+        <!-- Tableau des projets — rempli dynamiquement par JavaScript -->
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Titre</th>
+                    <th>Description</th>
+                    <th>Date</th>
+                    <th>ID Étudiant</th>
+                    <th>ID Cours</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="tbodyProjets"></tbody>
+        </table>
+    </div>
+
+    <!-- auth.js doit être chargé avant index.js -->
+    <script src="js/auth.js"></script>
+    <script src="js/index.js"></script>
+</body>
+</html>
