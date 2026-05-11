@@ -24,3 +24,4 @@ function verifyToken(req, res ,next) {
 }
 
 module.exports = verifyToken;
+//Le token permet d'identifier l'utilisateur et l'éviter de répéter le même processus à chaque requête.

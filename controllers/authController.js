@@ -1,3 +1,6 @@
+//Par Jorenso
+//Vérifie les identifiants.
+
 const db = require('../config/database');
 const jwt = require('jsonwebtoken');
 

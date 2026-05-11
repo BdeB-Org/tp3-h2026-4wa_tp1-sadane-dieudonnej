@@ -1,8 +1,11 @@
 const db = require('../config/database');
 
 //-------Jorenso---------
+// Les controllers contiennent la logique de l'application. En gros ça permet de traiter les requêtes reçus.
+// Executer les requêtes vers la base de données. 
+// Préparer la réponse envoyée au client. En gros le cerveau de l'Application Progamming Interface.
 
-//Par Jorenso
+
 // Post permet de créer une nouvelle rangée d'étudiant.
 exports.addEtudiant = (req, res) => {
     const { id_etudiant, nom, prenom, email, programme, password} = req.body;

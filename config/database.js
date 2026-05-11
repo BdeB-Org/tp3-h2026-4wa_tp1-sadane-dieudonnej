@@ -11,3 +11,5 @@ const db = new sqlite3.Database(
 
 //Permet d'utiliser la connexion ailleurs.
 module.exports = db;
+
+//Ce fichier contient les fichiers de configuration du projet.
